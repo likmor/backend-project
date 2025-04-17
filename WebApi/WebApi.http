@@ -1,0 +1,19 @@
+@WebApi_HostAddress = http://localhost:5110
+
+GET {{WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{WebApi_HostAddress}}/api/users/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "1234!"
+}
+
+
+###
+GET http://localhost:5110/api/Books
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiQURNSU4iLCJnZW5kZXIiOiJtYWxlIiwiZW1haWwiOiJhZG1pbkB3c2VpLmVkdS5wbCIsImV4cCI6MTc0NDczMzY2MiwianRpIjoiY2M1OGI1MmYtYjYxZi00OWQ4LTg1N2MtMDRmOTQwYzg5NjVhIiwiYXVkIjoid3NlaSIsImlzcyI6IndzZWkifQ.iy4BQh66kTmV4UTTuml9lQGk6JJCg-6PpjtLxkjBBTE
