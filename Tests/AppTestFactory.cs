@@ -15,7 +15,7 @@ public class AppTestFactory<TProgram>
         {
             var dbContextDescriptor = services.SingleOrDefault(
                 d => d.ServiceType ==
-                     typeof(DbContextOptions<AppDbContext>));
+                     typeof(DbContextOptions<IdentityDbContext>));
             services.Remove(dbContextDescriptor);
             var dbConnectionDescriptor = services.SingleOrDefault(
                 d => d.ServiceType ==
@@ -33,7 +33,7 @@ public class AppTestFactory<TProgram>
 
             services
                 .AddEntityFrameworkInMemoryDatabase()
-                .AddDbContext<AppDbContext>((container, options) =>
+                .AddDbContext<IdentityDbContext>((container, options) =>
                 {
                     options.UseInMemoryDatabase("QuizTest").UseInternalServiceProvider(container);
                 });

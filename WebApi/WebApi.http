@@ -15,5 +15,21 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:5110/api/Books
+GET http://localhost:5110/api/Restaurants/GetAll
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiQURNSU4iLCJnZW5kZXIiOiJtYWxlIiwiZW1haWwiOiJhZG1pbkB3c2VpLmVkdS5wbCIsImV4cCI6MTc0NDczMzY2MiwianRpIjoiY2M1OGI1MmYtYjYxZi00OWQ4LTg1N2MtMDRmOTQwYzg5NjVhIiwiYXVkIjoid3NlaSIsImlzcyI6IndzZWkifQ.iy4BQh66kTmV4UTTuml9lQGk6JJCg-6PpjtLxkjBBTE
+
+###
+GET http://localhost:5110/api/Restaurants/GetAll?name=ca&sortby=foodrating&descending=false
+
+###
+GET http://localhost:5110/api/Restaurants/GetById?id=135075
+
+###
+POST {{WebApi_HostAddress}}/api/Restaurants/Create
+Content-Type: application/json
+
+{
+  "name": "TESTt",
+  "country": "Mexico",
+  "city": "San test"
+}

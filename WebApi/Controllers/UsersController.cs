@@ -1,12 +1,12 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Infrastructure.Dto;
 using Infrastructure.EF;
 using JWT.Algorithms;
 using JWT.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Configuration;
-using WebApi.Dto;
 
 namespace WebApi.Controllers;
 

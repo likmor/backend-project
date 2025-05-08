@@ -1,10 +1,10 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json.Nodes;
+using Infrastructure.Dto;
 using Infrastructure.EF;
 using Microsoft.Extensions.DependencyInjection;
 using WebApi;
-using WebApi.Dto;
 
 namespace Tests;
 
@@ -12,7 +12,7 @@ public class AppTests : IClassFixture<AppTestFactory<Program>>
 {
     private readonly HttpClient _client;
     private readonly AppTestFactory<Program> _app;
-    private readonly AppDbContext _context;
+    private readonly IdentityDbContext _context;
 
     public AppTests(AppTestFactory<Program> app)
     {
@@ -20,7 +20,7 @@ public class AppTests : IClassFixture<AppTestFactory<Program>>
         _client = _app.CreateClient();
         using (var scope = app.Services.CreateScope())
         {
-            _context = scope.ServiceProvider.GetService<AppDbContext>();
+            _context = scope.ServiceProvider.GetService<IdentityDbContext>();
             var adminId = "A4757E31-C82D-44C3-BA8E-385E58FEA387";
             if (!_context.Users.Any(u => u.Id == adminId))
             {

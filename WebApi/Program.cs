@@ -1,5 +1,7 @@
+using Infrastructure.Services;
 using Infrastructure.EF;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using WebApi.Configuration;
 
@@ -14,13 +16,22 @@ public partial class Program
         // Add services to the container.
         builder.Services.AddAuthorization();
         builder.Services.AddControllers();
-        builder.Services.AddDbContext<AppDbContext>();
+        var conString = builder.Configuration.GetConnectionString("RestaurantsDatabase");
+        builder.Services.AddDbContext<AppDbContext>(options =>
+        {
+            options.UseSqlServer(conString);
+        });
+        builder.Services.AddDbContext<IdentityDbContext>(options =>
+        {
+            options.UseSqlServer(conString);
+        });
         builder.Services.AddIdentity<UserEntity, IdentityRole>()
-            .AddEntityFrameworkStores<AppDbContext>();
+            .AddEntityFrameworkStores<IdentityDbContext>();
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
+        builder.Services.AddScoped<IRestaurantService, RestaurantService>();
         builder.Services.AddSingleton<JwtSettings>();
         builder.Services.ConfigureJWT(new JwtSettings(builder.Configuration));
         builder.Services.ConfigureCors();
